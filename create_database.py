@@ -1,46 +1,42 @@
-# from langchain.document_loaders import DirectoryLoader
+# from langchain.document_loaders import DirectoryLoader (legacy)
 from langchain_community.document_loaders import DirectoryLoader
+from langchain_community.vectorstores import Chroma
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.schema import Document
-# from langchain.embeddings import OpenAIEmbeddings
+# from langchain.embeddings import OpenAIEmbeddings (legacy)
 from langchain_openai import OpenAIEmbeddings
-from langchain_community.vectorstores import Chroma
-import openai 
+ 
 from dotenv import load_dotenv
+import openai
 import os
 import shutil
 
+
 # Load environment variables. Assumes that project contains .env file with API keys
 load_dotenv()
-#---- Set OpenAI API key 
-# Change environment variable name from "OPENAI_API_KEY" to the name given in 
-# your .env file.
-openai.api_key = os.environ['OPENAI_API_KEY']
+# Set OpenAI API key (unnecessary)
+# openai.api_key = os.environ['OPENAI_API_KEY']
 
 CHROMA_PATH = "chroma"
-DATA_PATH = "data/books"
-
+DATA_PATH = "data/classic_books"
 
 def main():
     generate_data_store()
-
 
 def generate_data_store():
     documents = load_documents()
     chunks = split_text(documents)
     save_to_chroma(chunks)
 
-
 def load_documents():
     loader = DirectoryLoader(DATA_PATH, glob="*.md")
     documents = loader.load()
     return documents
 
-
 def split_text(documents: list[Document]):
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=300,
-        chunk_overlap=100,
+        chunk_size=1000,
+        chunk_overlap=500,
         length_function=len,
         add_start_index=True,
     )
