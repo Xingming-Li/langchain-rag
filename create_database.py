@@ -1,11 +1,8 @@
-# Quota exceeded
 import os
 import shutil
-
 from dotenv import load_dotenv
 # from langchain.document_loaders import DirectoryLoader (legacy)
 from langchain_community.document_loaders import DirectoryLoader
-# from langchain_community.vectorstores import Chroma
 from langchain_community.vectorstores import Chroma
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.schema import Document
@@ -14,14 +11,14 @@ from langchain_openai import OpenAIEmbeddings
 # import openai
 
 
-# Load environment variables. Assumes that project contains .env file with API keys
+# Load environment variables. Assume that project contains .env file with API keys
 load_dotenv()
 
 # Set OpenAI API key (unnecessary)
 # openai.api_key = os.environ['OPENAI_API_KEY']
 
-CHROMA_PATH = "chroma_val"
-DATA_PATH = "data/val_books"
+CHROMA_PATH = "chroma_books"
+DATA_PATH = "data/books"
 
 def main():
     generate_data_store()
@@ -45,6 +42,7 @@ def split_text(documents: list[Document]):
     )
     chunks = text_splitter.split_documents(documents)
     print(f"Split {len(documents)} documents into {len(chunks)} chunks.")
+
     # Examine the 10th chunk
     document_f10 = chunks[10]
     print(document_f10.page_content)
