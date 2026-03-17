@@ -11,7 +11,7 @@ from langchain_openai import OpenAIEmbeddings
 # import openai
 
 
-# Load environment variables. Assume that project contains .env file with API keys
+# Load environment variables (assume that project contains .env file with API keys)
 load_dotenv()
 
 # Set OpenAI API key (unnecessary)
@@ -67,6 +67,7 @@ def save_to_chroma(chunks: list[Document]):
     # Force to save DB (docs are automatically persisted actually)
     db.persist()
     print(f"Saved {len(chunks)} chunks to {CHROMA_PATH}.")
+
 
 if __name__ == "__main__":
     main()
