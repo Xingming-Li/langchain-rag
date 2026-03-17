@@ -17,7 +17,7 @@ load_dotenv()
 # Set OpenAI API key (unnecessary)
 # openai.api_key = os.environ['OPENAI_API_KEY']
 
-CHROMA_PATH = "chroma_books"
+CHROMA_PATH = "chroma_alice"
 DATA_PATH = "data/books"
 
 def main():
@@ -61,10 +61,10 @@ def save_to_chroma(chunks: list[Document]):
 
     # Create a new DB from the documents
     db = Chroma.from_documents(
-        chunks, OpenAIEmbeddings(), persist_directory=CHROMA_PATH
+        chunks, OpenAIEmbeddings(model="text-embedding-3-small"), persist_directory=CHROMA_PATH
     )
     
-    # Force to save DB
+    # Force to save DB (docs are automatically persisted actually)
     db.persist()
     print(f"Saved {len(chunks)} chunks to {CHROMA_PATH}.")
 
