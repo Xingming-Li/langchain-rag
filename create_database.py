@@ -17,8 +17,8 @@ load_dotenv()
 # Set OpenAI API key (unnecessary)
 # openai.api_key = os.environ['OPENAI_API_KEY']
 
-CHROMA_PATH = "chroma_alice"
-DATA_PATH = "data/books"
+CHROMA_PATH = "chroma_transformers"
+DATA_PATH = "data/hf_transformers_docs"
 
 def main():
     generate_data_store()
