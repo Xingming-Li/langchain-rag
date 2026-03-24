@@ -32,7 +32,7 @@ This project implements a simple **Retrieval-Augmented Generation (RAG)** pipeli
 
 ### 2. Embedding & Storage
 - Each chunk is embedded using OpenAI's `text-embedding-3-small`
-- Embeddings are stored in a **Chroma vector database**
+- Embeddings are stored in a Chroma vector database
 - The database is persisted locally in `chroma_transformers`
 
 ### 3. Retrieval & Querying
