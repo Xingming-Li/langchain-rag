@@ -13,7 +13,7 @@ load_dotenv()
 # Set OpenAI API key (unnecessary)
 # openai.api_key = os.environ['OPENAI_API_KEY']
 
-CHROMA_PATH = "chroma_alice"
+CHROMA_PATH = "chroma_transformers"
 
 PROMPT_TEMPLATE = """
 Answer the question based only on the following context:
@@ -48,7 +48,7 @@ def main():
     
     prompt_template = ChatPromptTemplate.from_template(PROMPT_TEMPLATE)
     prompt = prompt_template.format(context=context_text, question=query_text)
-    # print(prompt)
+    print(prompt)
     
     model = ChatOpenAI()
     response_text = model.predict(prompt)

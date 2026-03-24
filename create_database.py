@@ -41,14 +41,17 @@ def split_text(documents: list[Document]):
         add_start_index=True,
     )
     chunks = text_splitter.split_documents(documents)
-    print(f"Split {len(documents)} documents into {len(chunks)} chunks.")
+    print(f"Split {len(documents)} documents into {len(chunks)} chunks.\n")
 
     # Examine the 10th chunk
     document_f10 = chunks[10]
+    print("Example 1:")
     print(document_f10.page_content)
     print(document_f10.metadata)
+    print()
     # Examine the 10th chunk from the bottom
     document_l10 = chunks[-10]
+    print("Example 2:")
     print(document_l10.page_content)
     print(document_l10.metadata)
 
